@@ -44,6 +44,12 @@ a simple multi-state model
   
   end
 
+this is actually already shipped as a magic mixin
+
+  class MyClass < ActiveRecord::Base
+    include SuperState::CommonStates
+  end
+  
 we can also take arguments in our transitions
 
   class Loan < ActiveRecord::Base

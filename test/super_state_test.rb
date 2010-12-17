@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class SuperStateTest < ActiveSupport::TestCase
+class SuperStateTest < Test::Unit::TestCase
   
   test "abstract the tests" do
     puts "this has been abstracted from a live project"
