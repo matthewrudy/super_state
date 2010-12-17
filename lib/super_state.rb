@@ -1,3 +1,5 @@
+require 'super_state/common_states'
+
 module SuperState
   
   def self.included(klass)
