@@ -2,19 +2,15 @@ require 'test_helper'
 
 class CommonStatesTest < Test::Unit::TestCase
   
-  class MyClass < ActiveRecord::Base
-    include SuperState::CommonStates
-  end
-  
   # a DD::Batch is a simple example
   def setup
-    @object = MyClass.create!()
+    @object = Commoner.create!()
     assert @object.pending?
-    assert @object.class.ancestors.include?(CommonStates), "mate, it's not a CommonState thing"
+    assert @object.class.ancestors.include?(SuperState::CommonStates), "mate, it's not a CommonState thing"
   end
   
   test "a new record is pending?" do
-    @object = MyClass.new
+    @object = Commoner.new
     assert @object.pending?
   end
   

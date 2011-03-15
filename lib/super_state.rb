@@ -1,4 +1,5 @@
 require 'super_state/common_states'
+require 'active_support/ordered_hash'
 
 module SuperState
   
@@ -15,6 +16,8 @@ module SuperState
       
       # the initial_state only takes effect when we say record.valid?
       before_validation :set_initial_super_state, :on => :create
+      
+      validate :ensure_super_state
     end
   end
   
@@ -100,6 +103,12 @@ module SuperState
     
     def human_super_state
       self.current_super_state.humanize
+    end
+    
+    def ensure_super_state
+      unless self.class.__super_states.include?(self.current_super_state)
+        errors[self.class.super_state_column] << "is not a valid super state"
+      end
     end
     
   end
