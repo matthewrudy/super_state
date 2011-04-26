@@ -111,6 +111,17 @@ module SuperState
       end
     end
     
+    def ensure_super_state!(state_name)
+      self.transaction do
+        self.lock!
+
+        unless self.current_super_state == SuperState.canonicalise(state_name)
+          raise BadState, "the super state is not what we expected"
+        end
+          
+        yield
+      end
+    end
   end
   
   class BadState < ArgumentError ; end

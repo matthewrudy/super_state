@@ -27,6 +27,8 @@ class Something < ActiveRecord::Base
   super_state :middle
   super_state :end
   
+  state_transition :kick_off, :start  => :middle
+  state_transition :finish,   :middle => :end
 end
 
 ActiveRecord::Schema.define(:version => 0) do

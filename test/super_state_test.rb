@@ -17,6 +17,37 @@ class SuperStateTest < Test::Unit::TestCase
     assert record.valid?
   end
   
+  test "ensure_super_state! - when the state has changed" do
+    record = Something.create!
+    assert record.start?
+    
+    # lets suppose a 2nd process has already kicked this off
+    
+    other = Something.find(record.id)
+    other.kick_off!
+    
+    # but the original is still in the start state
+    
+    assert record.start?
+    
+    assert_raise SuperState::BadState do
+      record.ensure_super_state!(:start) do
+        record.kick_off!
+      end
+    end
+  end
+  
+  test "ensure_super_state! - when the state is what we expect" do
+    record = Something.create!
+    assert record.start?
+    
+    record.ensure_super_state!(:start) do
+      record.kick_off!
+    end
+    assert record.middle?
+    assert record.reload.middle?
+  end
+  
   test "abstract the tests" do
     puts "this has been abstracted from a live project"
     puts "as such the tests have not yet been abstracted"
