@@ -2,11 +2,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{super_state}
-  s.version = "0.3.0"
+  s.version = "0.4.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Matthew Rudy Jacobs"]
-  s.date = %q{2011-03-15}
+  s.date = %q{2011-04-26}
   s.email = %q{MatthewRudyJacobs@gmail.com}
   s.extra_rdoc_files = ["README"]
   s.files = ["MIT-LICENSE", "Rakefile", "README", "test/common_states_test.rb", "test/super_state_test.rb", "test/test_helper.rb", "lib/super_state/common_states.rb", "lib/super_state.rb"]

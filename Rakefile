@@ -45,7 +45,7 @@ spec = Gem::Specification.new do |s|
 
   # Change these as appropriate
   s.name              = "super_state"
-  s.version           = "0.3.0"
+  s.version           = "0.4.0"
   s.summary           = "Super Simple State Machine"
   s.author            = "Matthew Rudy Jacobs"
   s.email             = "MatthewRudyJacobs@gmail.com"
