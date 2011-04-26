@@ -30,7 +30,7 @@ class SuperStateTest < Test::Unit::TestCase
     
     assert record.start?
     
-    assert_raise SuperState::BadState do
+    assert_raise_with_message SuperState::BadState, "the super state is not what we expected" do
       record.ensure_super_state!(:start) do
         record.kick_off!
       end

@@ -63,4 +63,21 @@ class Test::Unit::TestCase
   def assert_no_errors_on(record, field)
     assert_errors_on([], record, field)
   end
+  
+  def assert_raise_with_message(exception, message)
+    begin
+      yield
+      flunk "expected to raise #{exception.inspect}"
+    rescue Exception => e
+      if e.is_a?(Test::Unit::AssertionFailedError)
+        raise e
+      end
+      assert_instance_of exception, e, "expected exception class #{exception}"
+      if message.is_a?(Regexp)
+        assert_match(message, e.message, "unexpected exception message")
+      else
+        assert_equal message, e.message, "unexpected exception message"
+      end
+    end
+  end
 end
