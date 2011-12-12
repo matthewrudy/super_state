@@ -20,13 +20,13 @@ ActiveRecord::Schema.define(:version => 0) do
 end
 
 class Something < ActiveRecord::Base
-  
+
   include SuperState
-  
+
   super_state :start, :initial => true
   super_state :middle
   super_state :end
-  
+
   state_transition :kick_off, :start  => :middle
   state_transition :finish,   :middle => :end
 end
@@ -43,27 +43,27 @@ end
 
 class Test::Unit::TestCase
   extend ActiveSupport::Testing::Declarative
-  
+
   def before_and_after_reload(record)
     yield
     record.reload
     yield
   end
-  
+
   def assert_errors(record, fields)
     fields.each do |field, errors|
       assert_errors_on(errors, record, field)
     end
   end
-  
+
   def assert_errors_on(errors, record, field)
     assert_equal Array(errors), Array(record.errors[field]), "unexpected errors on #{field.inspect}"
   end
-  
+
   def assert_no_errors_on(record, field)
     assert_errors_on([], record, field)
   end
-  
+
   def assert_raise_with_message(exception, message)
     begin
       yield
